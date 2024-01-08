@@ -5,7 +5,7 @@ beforeEach(() => {
   props = {
     name: 'Dima',
     age: 32,
-    lessons: [{title: '1'}, {title: '2'}, {title: '3'}],
+    lessons: [{title: '1'}, {title: '2'}, {title: '3', name: 'react'}],
     address: {
       street: {
         title: 'Nezavisimosti street'
@@ -22,7 +22,7 @@ test('', () => {
   const {title} = props.address.street;
 
   expect(age).toBe(32);
-  expect(lessons.length).toBe(10);
+  expect(lessons.length).toBe(3);
   expect(title).toBe('Nezavisimosti street');
 })
 
@@ -36,6 +36,9 @@ test('', () => {
   expect(lesson2.title).toBe('2');
 
   expect(les1.title).toBe('1');
-  expect(restLessons.length).toBe(5);
-  expect(restLessons[1].title).toBe('2');
+  expect(restLessons.length).toBe(2);
+  expect(restLessons[0].title).toBe('2');
+  expect(restLessons[1].name).toBe('react');
+
+  expect(restLessons[1]).toStrictEqual({title: '3', name: 'react'});
 })
