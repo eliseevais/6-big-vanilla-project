@@ -20,7 +20,8 @@ test('reference type test', () => {
     address: {
       city: 'Minsk',
       house: 12
-    }
+    },
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const awesomeUser = makeHairStyle(user, 2);
@@ -37,7 +38,8 @@ test('change address', () => {
       city: 'Minsk',
       house: 12
     },
-    laptop: {title: 'Zenbook'}
+    laptop: {title: 'Zenbook'},
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const movedUser = moveUser(user, 'Kiev');
@@ -58,7 +60,8 @@ test('upgrade laptop', () => {
       house: 12
     },
     laptop: {title: 'Zenbook'},
-    books: ['html', 'css', 'js', 'ts']
+    books: ['html', 'css', 'js', 'ts'],
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const upgradedUser = upgradeUser(user, 'Mackbook');
@@ -79,7 +82,8 @@ test('upgrade laptop', () => {
       house: 12
     },
     laptop: {title: 'Zenbook'},
-    books: ['html', 'css', 'js', 'ts']
+    books: ['html', 'css', 'js', 'ts'],
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const movedToNewHouseUser = moveUserToOtherHouse(user, 99);
@@ -100,7 +104,8 @@ test('add new books to user', () => {
       house: 12
     },
     laptop: {title: 'Zenbook'},
-    books: ['html', 'css', 'js', 'ts']
+    books: ['html', 'css', 'js', 'ts'],
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const userWithNewBooks = addNewBookToUser(user, 'rest api');
@@ -122,7 +127,8 @@ test('update css to styles component book to user', () => {
       house: 12
     },
     laptop: {title: 'Zenbook'},
-    books: ['html', 'css', 'js', 'ts']
+    books: ['html', 'css', 'js', 'ts'],
+    skills: ['reading', 'writing', 'painting', 'singing']
   };
 
   const userWithNewBooks = updateBookToUser(user, 'css', 'styled component');

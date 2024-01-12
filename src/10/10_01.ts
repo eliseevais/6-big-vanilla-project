@@ -141,4 +141,4 @@ export function updateCompanyName2(companies: {
       : c)
 
   return companiesCopy
-}
+};

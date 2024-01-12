@@ -10,10 +10,10 @@
 // }
 
 // usersObj[1]
-let user = { id: 100500, name: 'Irina'}
-usersObj[user.id] = user;
-delete usersObj[user.id];
-usersObj[user.id].name = 'Vitya';
+// let user = { id: 100500, name: 'Irina'}
+// usersObj[user.id] = user;
+// delete usersObj[user.id];
+// usersObj[user.id].name = 'Vitya';
 
 export const usersArray = [
   {id: 101, name: 'Dima'},
