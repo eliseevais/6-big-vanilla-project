@@ -1,0 +1,67 @@
+<script>
+
+  let axios = {
+    get() {
+      let pr = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({
+            G: 2,
+            g3: 4,
+            message: 'yoyoyo'
+          });
+        }, 3000)
+      });
+      return pr;
+    }
+  };
+
+  let promise = axios.get();
+
+  // promise.then((response) => {
+  //   return new Promise((res) => {
+  //     res('New Promise')
+  //   });
+  // })
+  // .then((message) => console.log(message))
+  // .then((message2) => console.log(message2))
+  // .then()
+  // .then();
+
+  // let pr2 = promise.then();
+  // let pr3 = pr2.then();
+  // let pr4 = pr3.then();
+
+  //.catch((data) => console.error('data', data))
+
+  // let a = {
+  //   result: 0,
+  //   sum(a) {
+  //     this.result += a;
+  //     return this;
+  //   },
+  //   minus(a) {
+  //     this.result -= a;
+  //     return this;
+  //   },
+  //   mult(a) {
+  //     this.result *= a;
+  //     return this;
+  //   }
+  // }
+  //
+  // // chaining по цепочке возвращаем, a не пишем, вызываем один раз
+  // a.sum(2)
+  //   .sum(3)
+  //   .minus(1)
+  //   .mult(2);
+  // //console.log(a.result)
+
+  let fetch = (url) => {
+
+  }
+
+  fetch('microsoft')
+    .then(data => console.log(data))
+
+
+</script>

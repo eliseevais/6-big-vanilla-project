@@ -1,0 +1,18 @@
+<script>
+
+
+
+  let thunkCreator = (userId) => {
+    let name = 'Sasha';
+
+    let thunk = (dispatch) => {
+      // alert(name);
+      axios.delete('blabla/' + userId)
+    }
+
+    return thunk;
+  }
+
+  let thunk = thunkCreator(123)
+
+</script>

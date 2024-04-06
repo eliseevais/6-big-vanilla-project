@@ -1,0 +1,86 @@
+<script>
+
+  // промисификация - когда все настолько хорошо что надо создать промис
+  let fetch = (url) => {
+    return new Promise((res, rej) => {
+      switch (url) {
+        case 'google': {
+          setTimeout(() => { // XMLHttpRequest
+            res({data: 'from google'})
+          }, 2000)
+          break;
+        }
+        case 'microsoft': {
+          setTimeout(() => {
+            res({data: 'from microsoft'})
+          }, 3000)
+          break;
+        }
+        case 'it-kamasutra': {
+          setTimeout(() => {
+            res({data: 'from it-kamasutra'})
+          }, 500)
+          break;
+        }
+        default: {
+          setTimeout(() => {
+            res({data: 'from unknown resource'})
+          }, 500)
+        }
+      }
+    });
+  }
+
+  // fetch('google').then(data => console.log(data));
+  // fetch('microsoft').then(data => console.log(data));
+  // fetch('it-kamasutra').then(data => console.log(data));
+
+  // fetch('microsoft').then(data => {
+  //   console.log(data)
+  //   fetch('google').then(data => {
+  //     console.log(data)
+  //     fetch('it-kamasutra').then(data => console.log(data))
+  //   })
+  // })
+
+  let makeRequests = () => {
+    fetch('microsoft')
+      .then(data => {
+        console.log(data);
+        return fetch('google');
+      })
+      .then((data) => {
+        console.log(data);
+        return fetch('it-kamasutra')
+      })
+      .then(data => console.log(data))
+  }
+
+  let makeRequests2 = async () => {
+    let data = await fetch('microsoft');
+    console.log(data);
+
+    data = await fetch('google');
+    console.log(data);
+
+    data = await fetch('it-kamasutra');
+    console.log(data);
+  }
+
+  let makeRequestAtOneMoment = async () => {
+
+    let dataFromKamasutra = await fetch('it-kamasutra');
+    if (dataFromKamasutra.isAuth) {
+      let promises = [
+        fetch('microsoft'),
+        fetch('google'),
+      ]
+      let data = await Promise.all(promises);
+      console.log('all finished', data)
+    }
+  }
+
+  makeRequestAtOneMoment();
+
+
+</script>
