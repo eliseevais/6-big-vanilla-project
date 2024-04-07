@@ -1,0 +1,210 @@
+<meta charset="UTF-8">
+<script src="api.js"></script>
+<script src="axios.js"></script>
+<script>
+
+  // // внутрь Promise передаем колбэк-функцию,
+  // // которая собственно и есть та логика,
+  // // которую промис обещает выполнить.
+  // let myPromise = new Promise((resolve, reject) => {
+  //   resolve();
+  //   //console.log(1)
+  //   //console.log(2)
+  //   //console.log(3)
+  // });
+  //
+  // // ниже по коду мы можем подписаться, на промис, чтобы он (промис) вызвал
+  // // нашу функцию, когда он (промис) зарезолвится. Для этого передаём
+  // // в метод then колбэк-функцию)
+  // myPromise.then(( ) => {
+  //   //console.log("myPromise зарезолвился, и я узнал об этом");
+  // })
+
+  // let myPromise = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     const number = Math.random();
+  //     resolve(number);
+  //   }, 2000)
+  // });
+  //
+  // console.log(myPromise);
+  //
+  // myPromise.then((response) => {
+  //   console.log(`subscriber1: ${response}`);
+  //   console.log(myPromise);
+  // })
+  //
+  // myPromise.then((response) => {
+  //   console.log(`subscriber2: ${response}`);
+  //   console.log(myPromise);
+  // })
+
+  let doAfter = (sec) => {
+    let myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const number = Math.random();
+        if (number > 0.1) {
+          resolve(number);
+        } else {
+          reject(number)
+        }
+      }, sec * 1000)
+    });
+    return myPromise;
+  };
+
+  // doAfter(5).then(() => console.log('я сработал через 5 секунд'));
+  // doAfter(3).then(() => console.log('а я сработал через 3 секунд'));
+  // doAfter(10).then(() => console.log('я сработал через 10 секунд'));
+
+  // let pr1 = doAfter(1);
+  //
+  // pr1
+  //   .then((n) => {
+  //     console.log(n)
+  //     return n*1000
+  //   })
+  //   .then((n) => {
+  //     console.log(n)
+  //     return n*1000
+  //   })
+  //   .then((n) => {
+  //     console.log(n)
+  //     return n*1000
+  //   })
+
+  // let pr2 = pr1.then(n => {
+  //   console.log('pr2', n);
+  //   return  n*1000
+  // })
+  // let pr3 = pr2.then(n => {
+  //   console.log('pr3', n);
+  //   return  n*1000
+  // })
+  // let pr4 = pr3.then(n => {
+  //   console.log('pr4', n);
+  // })
+
+  //console.log('finish', pr1, pr2, pr3, pr4)
+
+  //.catch((number) => console.error(`some error ${number}`))
+  // promise3.then( () => console.log('и я тоже следом сработал через 3 секунд') );
+  // promise3.then( () => console.log('и я') );
+
+  // 16 task
+  // api.sendStudentsCountToItKamasutra(20)
+  //   .then(res => {
+  //     console.log(res.data);
+  //   });
+
+
+  //19 task
+
+  // api.getVacanciesCountFromMicrosoft()
+  //   .then((count) => {
+  //     console.log("MS", count)
+  //   })
+  //
+  // api.getVacanciesCountFromGoogle()
+  //   .then((count) => {
+  //     console.log("Google", count)
+  //   })
+
+
+  // let prMicrosoft = api.getVacanciesCountFromMicrosoft();
+  // let prGoogle = api.getVacanciesCountFromGoogle();
+  // let prAll = Promise.all([prMicrosoft, prGoogle]);
+  // prAll
+  //   .then((res) => {
+  //     let resFromMS = res[0];
+  //     let resFromG = res[1];
+  //     console.log('Making request to It-Kamasutra');
+  //     return api.sendStudentsCountToItKamasutra(resFromMS + resFromG)
+  //   })
+  //   .then(res => {
+  //     console.log('Result from It-Kamasutra', res.data);
+  //   });
+
+  // let msVacancies;
+  // api.getVacanciesCountFromMicrosoft()
+  //   .then((msCount) => {
+  //     console.log('msCount', msCount);
+  //     msVacancies = msCount;
+  //     return api.getVacanciesCountFromGoogle();
+  //   })
+  //   .then((gCount) => {
+  //     console.log('gCount', gCount)
+  //     return api.sendStudentsCountToItKamasutra(gCount + msVacancies);
+  //   })
+  //   .then(res => {
+  //     console.log('Result from It-Kamasutra', res.data);
+  //   })
+
+  // function loadVacanciesPromiseVersion() {
+  //   let msVacancies;
+  //   api.getVacanciesCountFromMicrosoft()
+  //     .then((msCount) => {
+  //       console.log('msCount', msCount);
+  //       msVacancies = msCount;
+  //       return api.getVacanciesCountFromGoogle();
+  //     })
+  //     .then((gCount) => {
+  //       console.log('gCount', gCount)
+  //       return api.sendStudentsCountToItKamasutra(gCount + msVacancies);
+  //     })
+  //     .then(res => {
+  //       console.log('Result from It-Kamasutra', res.data);
+  //     })
+  // }
+
+  // async function loadVacanciesPromiseAsyncAwait() {
+  //   try {
+  //     let msCount = await api.getVacanciesCountFromMicrosoft();
+  //     console.log(msCount);
+  //     let gCount = await api.getVacanciesCountFromGoogle();
+  //     console.log(gCount);
+  //     let res = await api.sendStudentsCountToItKamasutra(gCount + msCount);
+  //     console.log('Result from It-Kamasutra', res.data);
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // }
+
+  async function loadVacanciesPromiseAsyncAwaitParallel() {
+    let msPr = api.getVacanciesCountFromMicrosoft();
+    let gPr = api.getVacanciesCountFromGoogle();
+    let msAndGResults = await Promise.all([msPr, gPr])
+    let res = await api.sendStudentsCountToItKamasutra(msAndGResults[0] +
+      msAndGResults[1]);
+    console.log('Result from It-Kamasutra', res.data);
+  }
+
+  async function loadVacanciesPromiseAsyncAwaitParallel2() {
+    let msAndGResults = await Promise.all([
+      api.getVacanciesCountFromMicrosoft(),
+      api.getVacanciesCountFromGoogle()
+    ])
+    let res = await api.sendStudentsCountToItKamasutra(msAndGResults[0] +
+      msAndGResults[1]);
+    console.log('Result from It-Kamasutra', res.data);
+  }
+
+  //loadVacanciesPromiseVersion();
+  // loadVacanciesPromiseAsyncAwait();
+  // loadVacanciesPromiseAsyncAwaitParallel();
+  loadVacanciesPromiseAsyncAwaitParallel2();
+
+  // doAfter(1)
+  //   .then((rand1) => {
+  //     console.log('rand1', rand1)
+  //     return rand1
+  //   })
+  //   .then((rand1) => doAfter(2))
+  //   .then((rand2) => {
+  //     console.log('rand2', rand2)
+  //     return rand2
+  //   })
+  //   .then((rand2) => console.log('rand2', rand2))
+
+
+</script>
